@@ -56,12 +56,10 @@ class MLP(object):
             if i == len(self.layers) - 1:
                 d = pred_ys - ys # 예측한 값 - 정답 값
             else:
-# ---------------------------------------------------------------------------------------------------------잘 모르겠음
                 d = self.inv_sig(self.U[i])*(self.D[-1].dot(self.weights[i+1].T))
 
             dW = self.Z[i-1].T.dot(d)
             db = np.sum(d, axis=0) # np.sum(axis = 0) 가장 큰 범위의 list를 제거한 후 각 리스트에 해당하는 값끼리 더함 (차원이 1개 줄어듬)
-# ---------------------------------------------------------------------------------------------------------잘 모르겠음
 
             self.weights[i] -= self.lr*dW # weight = weight - (학습률 X weight)
             self.bias[i] -= self.lr*db # bias = bias - (학습률 X bias)
